@@ -1,6 +1,6 @@
 {
   "name": "cookie-doctor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Lint Set-Cookie headers for security — locally, no website. Flags missing HttpOnly/Secure/SameSite, SameSite=None without Secure, over-broad Domain, and __Host-/__Secure- prefix violations that make browsers silently drop your cookie. Deterministic CLI, JSON/Markdown reports, no API key.",
   "type": "module",
   "main": "./dist/index.js",
@@ -24,6 +24,8 @@
   },
   "scripts": {
     "build": "tsup",
+    "build:web": "vite build",
+    "dev": "vite",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
@@ -65,6 +67,7 @@
     "@types/node": "^22.10.0",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2",
+    "vite": "^5.4.21",
     "vitest": "^2.1.8"
   }
 }

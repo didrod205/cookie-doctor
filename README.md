@@ -10,6 +10,8 @@
 [![types](https://img.shields.io/npm/types/cookie-doctor.svg)](https://www.npmjs.com/package/cookie-doctor)
 [![license](https://img.shields.io/npm/l/cookie-doctor.svg)](./LICENSE)
 
+**[🌐 Try the browser playground →](https://didrod205.github.io/cookie-doctor/)** &nbsp;·&nbsp; paste a `Set-Cookie`, see its security holes. Nothing is uploaded — it all runs client-side.
+
 </div>
 
 You set a session cookie and shipped it. But it went out without `HttpOnly` (so any
@@ -144,7 +146,8 @@ and types. The core has zero runtime dependencies.
   context / suggest a hardened header. The core stays 100% offline and deterministic.
 - `Partitioned` (CHIPS) attribute awareness.
 - Read cookies from a saved `.har` or a browser cookie export.
-- A browser playground — paste a `Set-Cookie`, see the audit, nothing uploaded.
+- ✅ **A browser playground** — paste a `Set-Cookie`, see the audit, nothing uploaded.
+  [Live here](https://didrod205.github.io/cookie-doctor/).
 
 ## 💖 Sponsor
 

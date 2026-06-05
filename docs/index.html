@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cookie-doctor — lint your Set-Cookie headers in the browser (nothing uploaded)</title>
+    <meta
+      name="description"
+      content="Paste a Set-Cookie header to find its security problems — missing HttpOnly/Secure/SameSite, SameSite=None without Secure, and __Host- prefix violations that make browsers silently drop the cookie. 100% in your browser."
+    />
+    <meta property="og:title" content="cookie-doctor — offline Set-Cookie security linter" />
+    <meta property="og:description" content="Find the security holes in your Set-Cookie headers — entirely in your browser. Nothing is uploaded." />
+    <script type="module" crossorigin src="./assets/index-BMpEoxWm.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-hsd0w3Lv.css">
+  </head>
+  <body>
+    <header class="hero">
+      <h1>🍪 cookie-doctor</h1>
+      <p class="tagline">
+        Lint your <strong>Set-Cookie</strong> headers for security — right here in your browser.
+      </p>
+      <p class="privacy">🔒 100% local — your cookies never leave this page. No upload, no server.</p>
+    </header>
+
+    <main>
+      <section class="input-card">
+        <div class="input-head">
+          <label for="input">Paste a Set-Cookie (or a <code>curl -I</code> response)</label>
+          <div class="input-actions">
+            <button id="sample" type="button" class="ghost">Load sample</button>
+            <button id="clear" type="button" class="ghost">Clear</button>
+          </div>
+        </div>
+        <textarea id="input" spellcheck="false" autocomplete="off"
+          placeholder="__Host-sid=abc; Secure; HttpOnly; SameSite=Lax; Path=/
+(one per line, or a whole curl -I dump — Set-Cookie lines are picked out)"></textarea>
+      </section>
+
+      <section id="output" class="output hidden"></section>
+    </main>
+
+    <footer>
+      <p>
+        Powered by <a href="https://www.npmjs.com/package/cookie-doctor"><code>cookie-doctor</code></a> —
+        the same engine, in a CLI: <code>curl -sI url | npx cookie-doctor scan</code>.
+        <a href="https://github.com/didrod205/cookie-doctor">GitHub</a> · MIT
+      </p>
+      <p class="dim">Analysis runs on cookie-doctor's pure, zero-dependency core (incl. the __Host-/__Secure- prefix rules). Nothing is sent anywhere.</p>
+    </footer>
+
+  </body>
+</html>
