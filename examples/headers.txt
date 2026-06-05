@@ -1,0 +1,4 @@
+HTTP/2 200
+content-type: text/html
+set-cookie: sid=abc; Path=/
+set-cookie: __Host-csrf=tok; Secure; HttpOnly; SameSite=Strict; Path=/

@@ -1,0 +1,16 @@
+{
+  "ignore": [],
+  "sessionNames": [
+    "session",
+    "sess",
+    "sid",
+    "auth",
+    "token",
+    "jwt",
+    "sso",
+    "login",
+    "remember"
+  ],
+  "maxAgeDays": 30,
+  "minScore": 0
+}

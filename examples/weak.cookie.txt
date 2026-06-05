@@ -1,0 +1,4 @@
+sid=a1b2c3d4e5
+__Host-token=xyz; Path=/app; Domain=example.com
+auth=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIn0.sig; SameSite=None; Max-Age=31536000
+prefs=darkmode; Secure

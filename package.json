@@ -1,0 +1,70 @@
+{
+  "name": "cookie-doctor",
+  "version": "0.1.0",
+  "description": "Lint Set-Cookie headers for security — locally, no website. Flags missing HttpOnly/Secure/SameSite, SameSite=None without Secure, over-broad Domain, and __Host-/__Secure- prefix violations that make browsers silently drop your cookie. Deterministic CLI, JSON/Markdown reports, no API key.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "bin": {
+    "cookie-doctor": "./dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "example": "node dist/cli.js scan examples/weak.cookie.txt",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "cookie",
+    "set-cookie",
+    "security",
+    "httponly",
+    "samesite",
+    "secure",
+    "__host-",
+    "session",
+    "csrf",
+    "web-security",
+    "security-headers",
+    "linter",
+    "appsec",
+    "cli"
+  ],
+  "author": "didrod205 (https://github.com/didrod205)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/didrod205/cookie-doctor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/didrod205/cookie-doctor/issues"
+  },
+  "homepage": "https://github.com/didrod205/cookie-doctor#readme",
+  "dependencies": {
+    "cac": "^6.7.14",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

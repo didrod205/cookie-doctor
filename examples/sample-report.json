@@ -1,0 +1,223 @@
+{
+  "tool": "cookie-doctor",
+  "version": "0.1.0",
+  "generatedAt": "2026-06-05T04:29:20.151Z",
+  "summary": {
+    "cookies": 5,
+    "score": 69,
+    "grade": "D",
+    "errors": 10,
+    "warnings": 6,
+    "infos": 0
+  },
+  "cookies": [
+    {
+      "source": "examples/weak.cookie.txt #1",
+      "name": "sid",
+      "score": 70,
+      "grade": "C",
+      "counts": {
+        "error": 2,
+        "warning": 1,
+        "info": 0
+      },
+      "findings": [
+        {
+          "rule": "no-httponly",
+          "category": "xss",
+          "severity": "error",
+          "attribute": "HttpOnly",
+          "title": "No HttpOnly",
+          "message": "This looks like a session/token cookie, but JavaScript (and any XSS) can read it.",
+          "fix": "Add `HttpOnly` unless client-side JS genuinely needs to read the cookie."
+        },
+        {
+          "rule": "no-secure",
+          "category": "transport",
+          "severity": "error",
+          "attribute": "Secure",
+          "title": "No Secure",
+          "message": "Without Secure, the cookie is sent over plaintext HTTP and can be sniffed or MITM'd.",
+          "fix": "Add `Secure` (and consider the `__Host-` prefix for session cookies)."
+        },
+        {
+          "rule": "no-samesite",
+          "category": "csrf",
+          "severity": "warning",
+          "attribute": "SameSite",
+          "title": "No SameSite",
+          "message": "Relying on the browser's default (Lax). Set it explicitly — Strict or Lax defends against CSRF.",
+          "fix": "Add `SameSite=Lax` (or `Strict` for sensitive actions)."
+        }
+      ]
+    },
+    {
+      "source": "examples/weak.cookie.txt #2",
+      "name": "__Host-token",
+      "score": 28,
+      "grade": "F",
+      "counts": {
+        "error": 5,
+        "warning": 2,
+        "info": 0
+      },
+      "findings": [
+        {
+          "rule": "prefix-needs-secure",
+          "category": "validity",
+          "severity": "error",
+          "attribute": "Secure",
+          "title": "__Host- prefix without Secure",
+          "message": "A `__Host-` cookie must be Secure, or the browser rejects it (it never gets set).",
+          "fix": "Add `Secure`."
+        },
+        {
+          "rule": "host-prefix-domain",
+          "category": "validity",
+          "severity": "error",
+          "attribute": "Domain",
+          "title": "__Host- prefix with a Domain attribute",
+          "message": "A `__Host-` cookie must NOT set Domain — with it, the browser rejects the cookie.",
+          "fix": "Remove the Domain attribute (the cookie becomes host-only, which is the point of __Host-)."
+        },
+        {
+          "rule": "host-prefix-path",
+          "category": "validity",
+          "severity": "error",
+          "attribute": "Path",
+          "title": "__Host- prefix without Path=/",
+          "message": "A `__Host-` cookie must set `Path=/` exactly — otherwise the browser rejects it.",
+          "fix": "Set `Path=/`."
+        },
+        {
+          "rule": "no-httponly",
+          "category": "xss",
+          "severity": "error",
+          "attribute": "HttpOnly",
+          "title": "No HttpOnly",
+          "message": "This looks like a session/token cookie, but JavaScript (and any XSS) can read it.",
+          "fix": "Add `HttpOnly` unless client-side JS genuinely needs to read the cookie."
+        },
+        {
+          "rule": "no-secure",
+          "category": "transport",
+          "severity": "error",
+          "attribute": "Secure",
+          "title": "No Secure",
+          "message": "Without Secure, the cookie is sent over plaintext HTTP and can be sniffed or MITM'd.",
+          "fix": "Add `Secure` (and consider the `__Host-` prefix for session cookies)."
+        },
+        {
+          "rule": "no-samesite",
+          "category": "csrf",
+          "severity": "warning",
+          "attribute": "SameSite",
+          "title": "No SameSite",
+          "message": "Relying on the browser's default (Lax). Set it explicitly — Strict or Lax defends against CSRF.",
+          "fix": "Add `SameSite=Lax` (or `Strict` for sensitive actions)."
+        },
+        {
+          "rule": "broad-domain",
+          "category": "scope",
+          "severity": "warning",
+          "attribute": "Domain",
+          "title": "Domain=example.com shares the cookie with subdomains",
+          "message": "Setting Domain sends the cookie to every subdomain — including any that's less trusted or attacker-controlled.",
+          "fix": "Omit Domain for a host-only cookie (the default and most secure)."
+        }
+      ]
+    },
+    {
+      "source": "examples/weak.cookie.txt #3",
+      "name": "auth",
+      "score": 58,
+      "grade": "F",
+      "counts": {
+        "error": 3,
+        "warning": 1,
+        "info": 0
+      },
+      "findings": [
+        {
+          "rule": "samesite-none-insecure",
+          "category": "validity",
+          "severity": "error",
+          "attribute": "SameSite",
+          "title": "SameSite=None without Secure",
+          "message": "`SameSite=None` requires `Secure` — without it, modern browsers reject the cookie.",
+          "fix": "Add `Secure` (or drop SameSite=None if the cookie isn't used cross-site)."
+        },
+        {
+          "rule": "no-httponly",
+          "category": "xss",
+          "severity": "error",
+          "attribute": "HttpOnly",
+          "title": "No HttpOnly",
+          "message": "This looks like a session/token cookie, but JavaScript (and any XSS) can read it.",
+          "fix": "Add `HttpOnly` unless client-side JS genuinely needs to read the cookie."
+        },
+        {
+          "rule": "no-secure",
+          "category": "transport",
+          "severity": "error",
+          "attribute": "Secure",
+          "title": "No Secure",
+          "message": "Without Secure, the cookie is sent over plaintext HTTP and can be sniffed or MITM'd.",
+          "fix": "Add `Secure` (and consider the `__Host-` prefix for session cookies)."
+        },
+        {
+          "rule": "long-lived",
+          "category": "lifetime",
+          "severity": "warning",
+          "attribute": "Max-Age",
+          "title": "Lives ~365 days",
+          "message": "A long-lived auth cookie widens the blast radius if it's ever stolen (and browsers cap at ~400 days anyway).",
+          "fix": "Shorten the lifetime (≤ 30 days) and refresh sessions instead."
+        }
+      ]
+    },
+    {
+      "source": "examples/weak.cookie.txt #4",
+      "name": "prefs",
+      "score": 88,
+      "grade": "B",
+      "counts": {
+        "error": 0,
+        "warning": 2,
+        "info": 0
+      },
+      "findings": [
+        {
+          "rule": "no-httponly",
+          "category": "xss",
+          "severity": "warning",
+          "attribute": "HttpOnly",
+          "title": "No HttpOnly",
+          "message": "JavaScript can read this cookie; if no client code needs it, add HttpOnly.",
+          "fix": "Add `HttpOnly` unless client-side JS genuinely needs to read the cookie."
+        },
+        {
+          "rule": "no-samesite",
+          "category": "csrf",
+          "severity": "warning",
+          "attribute": "SameSite",
+          "title": "No SameSite",
+          "message": "Relying on the browser's default (Lax). Set it explicitly — Strict or Lax defends against CSRF.",
+          "fix": "Add `SameSite=Lax` (or `Strict` for sensitive actions)."
+        }
+      ]
+    },
+    {
+      "source": "examples/strong.cookie.txt",
+      "name": "__Host-session",
+      "score": 100,
+      "grade": "A",
+      "counts": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "findings": []
+    }
+  ]
+}
